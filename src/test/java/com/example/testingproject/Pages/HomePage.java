@@ -1,4 +1,4 @@
-package com.example.testingproject;
+package com.example.testingproject.Pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 
-    protected static final String PAGE_URL = "https://magento.softwaretestingboard.com/";
+    public static final String PAGE_URL = "https://magento.softwaretestingboard.com/";
 
     @FindBy(xpath = "//header/div[1]/div[1]/ul[1]/li[2]/a[1]")
     WebElement loginButton;

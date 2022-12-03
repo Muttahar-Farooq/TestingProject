@@ -1,5 +1,7 @@
-package com.example.testingproject;
+package com.example.testingproject.StepDefinitions;
 
+import com.example.testingproject.LoginPage;
+import com.example.testingproject.Pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

@@ -1,12 +1,14 @@
-package com.example.testingproject;
+package com.example.testingproject.StepDefinitions;
 
+import com.example.testingproject.Pages.HomePage;
+import com.example.testingproject.StepDefinitions.AbstractStepDef;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class LoginStepDef extends AbstractStepDef{
+public class LoginStepDef extends AbstractStepDef {
     @Given("the home page is opened")
     public void theHomePageIsOpened() {
         homePage.openPage();
