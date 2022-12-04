@@ -1,12 +1,23 @@
 package com.example.testingproject.StepDefinitions;
 
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.support.ui.Wait;
 
 public class CartStepDef extends AbstractStepDef{
+
+    @AfterEach
+    public void closeBrowser(){
+        driver.close();
+        driver.quit();
+    }
+
     @Given("item Radiant Tee is selected")
     public void itemRadiantTeeIsSelected() {
 
@@ -18,27 +29,59 @@ public class CartStepDef extends AbstractStepDef{
     }
 
     @And("color Orange is selected")
-    public void colorOrangeIsSelected() throws InterruptedException {
+    public void colorOrangeIsSelected() {
         homePage.selectRadiantTeeOrange();
     }
 
     @When("add to cart of selected item is clicked")
-    public void addToCartOfSelectedItemIsClicked() throws InterruptedException {
+    public void addToCartOfSelectedItemIsClicked() {
         homePage.clickRadiantTeeAddToCart();
+        homePage.waitTillItemAddedToCart();
     }
 
     @Then("added to cart message is displayed")
-    public void addedToCartMessageIsDisplayed() throws InterruptedException {
-        Assert.assertTrue(homePage.checkIsItemAddedToCart().contains("You added Radiant Tee to your"));
+    public void addedToCartMessageIsDisplayed() {
+        Assertions.assertTrue(homePage.checkIsItemAddedToCart().contains("You added Radiant Tee to your"));
     }
 
     @When("cart icon is clicked")
-    public void cartIconIsClicked() {
+    public void cartIconIsClicked() throws InterruptedException {
+        Thread.sleep(1000);
         homePage.clickCartIcon();
     }
 
     @Then("empty cart message is displayed")
     public void emptyCartMessageIsDisplayed() {
-        Assert.assertEquals("You have no items in your shopping cart.", homePage.getNoItemCartMessage());
+        Assert.assertEquals("You have no items in your shopping cart.", homePage.getEmptyCartItemText());
     }
+
+    @Then("Radian Tee item is shown in cart")
+    public void radianTeeItemIsShownInCart() {
+        Assert.assertEquals("Radiant Tee", homePage.getItemTitleInCart());
+    }
+
+    @And("the item can be checked out")
+    public void theItemCanBeCheckedOut() {
+        Assert.assertTrue(homePage.checkIsCartProceedButton());
+    }
+
+    @Given("item Radiant Tee is added to cart")
+    public void itemRadiantTeeIsAddedToCart() throws InterruptedException {
+        sizeXSIsSelected();
+        colorOrangeIsSelected();
+        addToCartOfSelectedItemIsClicked();
+        cartIconIsClicked();
+        radianTeeItemIsShownInCart();
+    }
+
+    @When("remove item button is clicked")
+    public void removeItemButtonIsClicked() {
+        homePage.removeCartItems();
+    }
+
+    @And("OK option is selected in confirmation prompt")
+    public void okOptionIsSelectedInConfirmationPrompt() {
+        homePage.clickRemoveItemsConfirmationButton();
+    }
+
 }

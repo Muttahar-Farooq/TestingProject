@@ -1,7 +1,6 @@
 package com.example.testingproject.StepDefinitions;
 
 import com.example.testingproject.Pages.HomePage;
-import com.example.testingproject.StepDefinitions.AbstractStepDef;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
