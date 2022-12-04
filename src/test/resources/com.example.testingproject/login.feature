@@ -4,7 +4,7 @@ Feature: YourLogo sign in page test
     Given the home page is opened
     And Login Button is clicked
 
-    Scenario:
+    Scenario: Incorrect Login
       Given the Username is filled with 'softwaretesting@unideb.hu'
       And the Password is filled with 'WrongPassword'
       When the Sign In button is clicked

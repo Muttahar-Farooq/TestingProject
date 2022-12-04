@@ -1,16 +1,17 @@
 package com.example.testingproject.StepDefinitions;
 
-import com.example.testingproject.LoginPage;
+import com.example.testingproject.Pages.LoginPage;
 import com.example.testingproject.Pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractStepDef {
 
-    private static final Duration WAIT_TIME = Duration.ofSeconds(10);
+    private static final int WAIT_TIME = 30;
 
     static WebDriver driver;
 
@@ -21,7 +22,11 @@ public abstract class AbstractStepDef {
         System.setProperty("webdriver.chrome.driver", "C://ChromeDriver//chromedriver.exe");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(WAIT_TIME);
+        driver.manage().timeouts().implicitlyWait(WAIT_TIME, TimeUnit.SECONDS);
+
+//        System.setProperty("webdriver.gecko.driver", "C:\\Users\\mutta\\IdeaProjects\\TestingProject\\src\\test\\resources\\driver\\geckodriver.exe");
+//        WebDriverManager.firefoxdriver().setup();
+//        driver = new FirefoxDriver();
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
     }

@@ -1,4 +1,4 @@
-package com.example.testingproject;
+package com.example.testingproject.Pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,5 +41,7 @@ public class LoginPage {
         loginButton.click();
     }
 
-    public boolean checkLoginFailedText(){ return loginFailedText.isDisplayed();}
+    public boolean checkLoginFailedText(){
+
+        return loginFailedText.isDisplayed();}
 }
