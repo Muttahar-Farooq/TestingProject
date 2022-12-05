@@ -12,20 +12,21 @@ import java.util.List;
 
 public class SearchPage {
 
-    List<WebElement> allSearchedItems;
-    By bySearchedItemsCss = new By.ByCssSelector(".item.product.product-item");
-    By byItemTitleCss = new By.ByCssSelector(".product.name.product-item-name");
+    private List<WebElement> allSearchedItems;
+    private By bySearchedItemsCss = new By.ByCssSelector(".item.product.product-item");
+    private By byItemTitleCss = new By.ByCssSelector(".product.name.product-item-name");
+    private By byItemPriceCss = new By.ByCssSelector(".price");
 
     @FindBy(xpath = "/html/body/div[2]/main/div[3]/div[1]/div[2]/div[2]/ol/li[1]/div/div/strong/a")
-    public WebElement firstProductItemLink;
-
-    WebDriver driver;
+    private WebElement firstProductItemLink;
 
     @FindBy(css = "[data-role = 'sorter']")
-    public WebElement sortByDropDown;
+    private WebElement sortByDropDown;
 
-    @FindBy(xpath = "/html/body/div[2]/main/div[3]/div[1]/div[2]/div[1]/div[4]/select/option[1]")
-    public WebElement sortByProductName;
+    @FindBy(css = ".action.sorter-action")
+    private WebElement orderModifierToggle;
+
+    WebDriver driver;
     
     public  SearchPage(WebDriver driver){
         this.driver = driver;
@@ -48,14 +49,24 @@ public class SearchPage {
         return titles;
     }
 
+    public ArrayList<String> allSearchedItemsPrices(){
+        allSearchedItems = driver.findElements(bySearchedItemsCss);
+        ArrayList<String> prices = new ArrayList<>();
+        allSearchedItems.forEach(webElement -> {
+            prices.add(webElement.findElement(byItemPriceCss).getText());
+        });
+        return prices;
+    }
+
     public void clickOnSortBy(){
         sortByDropDown.click();
     }
 
-    public void selectSortByProductName(){
+    public void selectSortByIndex(Integer index){
         Select sortBySelect = new Select(sortByDropDown);
-        sortBySelect.selectByIndex(0);
-        //sortByProductName.click();
+        sortBySelect.selectByIndex(index);
     }
+
+    public void clickOrderModifierToggle(){ orderModifierToggle.click();}
 
 }

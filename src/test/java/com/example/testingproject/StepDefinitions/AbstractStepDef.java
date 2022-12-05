@@ -1,9 +1,7 @@
 package com.example.testingproject.StepDefinitions;
 
-import com.example.testingproject.Pages.CartPage;
-import com.example.testingproject.Pages.LoginPage;
-import com.example.testingproject.Pages.HomePage;
-import com.example.testingproject.Pages.SearchPage;
+import com.example.testingproject.Pages.*;
+import io.cucumber.java.ro.Si;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +22,7 @@ public abstract class AbstractStepDef {
     protected static LoginPage loginPage;
     protected static CartPage cartPage;
     protected static SearchPage searchPage;
+    protected static SingleItemPage singleItemPage;
 
     static {
         System.setProperty("webdriver.chrome.driver", "C://ChromeDriver//chromedriver.exe");
@@ -37,5 +36,6 @@ public abstract class AbstractStepDef {
         loginPage = new LoginPage(driver);
         cartPage = new CartPage(driver);
         searchPage = new SearchPage(driver);
+        singleItemPage = new SingleItemPage(driver);
     }
 }
