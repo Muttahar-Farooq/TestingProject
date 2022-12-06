@@ -26,25 +26,8 @@ public abstract class AbstractStepDef {
     protected static SingleItemPage singleItemPage;
     protected static CheckoutPage checkoutPage;
 
-//    static {
-//        System.setProperty("webdriver.chrome.driver", "C://ChromeDriver//chromedriver.exe");
-//        WebDriverManager.chromedriver().setup();
-//        driver = new ChromeDriver();
-//        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIME)).until(
-//                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-//        driver.manage().timeouts().implicitlyWait(WAIT_TIME, TimeUnit.SECONDS);
-//
-//        homePage = new HomePage(driver);
-//        loginPage = new LoginPage(driver);
-//        cartPage = new CartPage(driver);
-//        searchPage = new SearchPage(driver);
-//        singleItemPage = new SingleItemPage(driver);
-//        checkoutPage = new CheckoutPage(driver);
-//
-//    }
-
     public static void setDriver(){
-        System.setProperty("webdriver.chrome.driver", "C://ChromeDriver//chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C://ChromeDriver//chromedriver.exe");   //<---- Provide the location of driver here!!!
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIME)).until(
