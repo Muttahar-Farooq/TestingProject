@@ -1,9 +1,15 @@
 package com.example.testingproject.StepDefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
 
 public class SearchStepDef extends AbstractStepDef{
@@ -35,5 +41,11 @@ public class SearchStepDef extends AbstractStepDef{
     @And("item {string} should be NOT be present in ANY search result")
     public void itemShouldBeNOTBePresentInANYSearchResult(String arg0) {
         Assertions.assertFalse(searchPage.allSearchedItemsNames().contains(arg0));
+    }
+
+    @After
+    public static void af(){
+        //driver.close();
+        driver.quit();
     }
 }

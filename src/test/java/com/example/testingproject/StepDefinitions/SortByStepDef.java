@@ -1,8 +1,14 @@
 package com.example.testingproject.StepDefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.Collections;
@@ -63,4 +69,11 @@ public class SortByStepDef extends AbstractStepDef {
     public void theOrderOfItemsDisplayedIsReversed() {
         Assertions.assertEquals(sortedPositionOfTitles,searchPage.allSearchedItemsNames());
     }
+
+    @After
+    public static void af(){
+        //driver.close();
+        driver.quit();
+    }
+
 }

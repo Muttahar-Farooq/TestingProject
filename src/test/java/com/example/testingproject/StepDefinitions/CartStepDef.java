@@ -1,22 +1,20 @@
 package com.example.testingproject.StepDefinitions;
 
+import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.support.ui.Wait;
+
 
 public class CartStepDef extends AbstractStepDef{
 
-    @AfterEach
-    public void closeBrowser(){
-        driver.close();
-        driver.quit();
-    }
 
     @Given("item Radiant Tee is selected")
     public void itemRadiantTeeIsSelected() {
@@ -80,8 +78,15 @@ public class CartStepDef extends AbstractStepDef{
     }
 
     @And("OK option is selected in confirmation prompt")
-    public void okOptionIsSelectedInConfirmationPrompt() {
+    public void okOptionIsSelectedInConfirmationPrompt() throws InterruptedException {
+        Thread.sleep(1000);
         homePage.clickRemoveItemsConfirmationButton();
+    }
+
+    @After
+    public static void af(){
+        //driver.close();
+        driver.quit();
     }
 
 }
